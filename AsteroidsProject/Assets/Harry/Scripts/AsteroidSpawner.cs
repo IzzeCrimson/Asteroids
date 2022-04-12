@@ -7,21 +7,23 @@ public class AsteroidSpawner : MonoBehaviour
     [SerializeField] BoxCollider boxCollider;
     [SerializeField] GameObject asteroid;
 
+
     GameObject movingObject;
-    Vector3 SpawnPositoin;
+    public Vector3 SpawnPositoin;
     float asteroidSpawnerCooldown = 5;
 
     bool canSpawnAsteroid;
+    MoveAsteroid moveAsteroid;
 
-    [SerializeField] bool shootAsteroidsUp;
-    [SerializeField] bool shootAsteroidsDown;
-    [SerializeField] bool shootAsteroidsLeft;
-    [SerializeField] bool shootAsteroidsRight;
+    public bool shootAsteroidsUp;
+    public bool shootAsteroidsDown;
+    public bool shootAsteroidsLeft;
+    public bool shootAsteroidsRight;
 
     void Start()
     {
  
-        Debug.Log(boxCollider.size);
+        //Debug.Log(boxCollider.size);
         canSpawnAsteroid = true;
     }
 
@@ -35,10 +37,11 @@ public class AsteroidSpawner : MonoBehaviour
             {
 
                 SpawnPositoin.x = Random.Range(-boxCollider.size.x / 2, boxCollider.size.x / 2);
+                SpawnPositoin.z = boxCollider.transform.position.z;
 
                 movingObject = Instantiate(asteroid, SpawnPositoin, Quaternion.identity, boxCollider.transform);
-
-                movingObject.transform.Translate(new Vector3(2,0,0), Space.Self);
+                moveAsteroid = movingObject.GetComponent<MoveAsteroid>();
+                moveAsteroid.spawner = this;
 
                 canSpawnAsteroid = false;
 
@@ -47,9 +50,11 @@ public class AsteroidSpawner : MonoBehaviour
             {
 
                 SpawnPositoin.x = Random.Range(-boxCollider.size.x / 2, boxCollider.size.x / 2);
+                SpawnPositoin.z = boxCollider.transform.position.z;
 
                 movingObject = Instantiate(asteroid, SpawnPositoin, Quaternion.identity, boxCollider.transform);
-                movingObject.transform.position = movingObject.transform.position * Time.deltaTime;
+                moveAsteroid = movingObject.GetComponent<MoveAsteroid>();
+                moveAsteroid.spawner = this;
 
                 canSpawnAsteroid = false;
 
@@ -58,9 +63,11 @@ public class AsteroidSpawner : MonoBehaviour
             {
 
                 SpawnPositoin.x = Random.Range(-boxCollider.size.z / 2, boxCollider.size.z / 2);
+                SpawnPositoin.z = boxCollider.transform.position.z;
 
                 movingObject = Instantiate(asteroid, SpawnPositoin, Quaternion.identity, boxCollider.transform);
-                movingObject.transform.position = movingObject.transform.position * Time.deltaTime;
+                moveAsteroid = movingObject.GetComponent<MoveAsteroid>();
+                moveAsteroid.spawner = this;
 
                 canSpawnAsteroid = false;
 
@@ -69,9 +76,11 @@ public class AsteroidSpawner : MonoBehaviour
             {
 
                 SpawnPositoin.x = Random.Range(-boxCollider.size.z / 2, boxCollider.size.z / 2);
+                SpawnPositoin.z = boxCollider.transform.position.z;
 
                 movingObject = Instantiate(asteroid, SpawnPositoin, Quaternion.identity, boxCollider.transform);
-                movingObject.transform.position = Vector3.MoveTowards(movingObject.transform.position,new Vector3(100,2,100),10); 
+                moveAsteroid = movingObject.GetComponent<MoveAsteroid>();
+                moveAsteroid.spawner = this;
 
                 canSpawnAsteroid = false;
 
@@ -86,5 +95,53 @@ public class AsteroidSpawner : MonoBehaviour
         yield return new WaitForSeconds(asteroidSpawnerCooldown);
 
         canSpawnAsteroid = true;
-    }     
+    }
+
+    private void OnTriggerEnter(Collider other)
+    {
+        MoveAsteroid asteroidMovement;
+        if (other.tag == "Asteroid")
+        {
+
+            asteroidMovement = other.GetComponent<MoveAsteroid>();
+           
+            
+            if (shootAsteroidsUp)
+            {
+
+                if (!asteroidMovement.spawner.shootAsteroidsUp)
+                {
+                    Destroy(other);
+                }
+
+            }
+            else if (shootAsteroidsDown)
+            {
+
+                if (!asteroidMovement.spawner.shootAsteroidsDown)
+                {
+                    Destroy(other);
+                }
+
+            }
+            else if (shootAsteroidsLeft)
+            {
+
+                if (!asteroidMovement.spawner.shootAsteroidsLeft)
+                {
+                    Destroy(other);
+                }
+
+            }
+            else if (shootAsteroidsRight)
+            {
+
+                if (!asteroidMovement.spawner.shootAsteroidsRight)
+                {
+                    Destroy(other);
+                }
+
+            }
+        }
+    }
 }
