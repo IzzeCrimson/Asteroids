@@ -107,46 +107,46 @@ public class AsteroidSpawner : MonoBehaviour
         MoveAsteroid asteroidMovement;
         if (other.tag == "Asteroid")
         {
-
-            asteroidMovement = other.GetComponent<MoveAsteroid>();
-           
             
-            if (shootAsteroidsUp)
-            {
+            asteroidMovement = other.GetComponent<MoveAsteroid>();
+            Debug.Log("ass");
+            Destroy(other);
+            //if (shootAsteroidsUp)
+            //{
 
-                if (!asteroidMovement.spawner.shootAsteroidsUp)
-                {
-                    Destroy(other);
-                }
+            //    if (!asteroidMovement.spawner.shootAsteroidsUp)
+            //    {
+            //        Destroy(other);
+            //    }
 
-            }
-            else if (shootAsteroidsDown)
-            {
+            //}
+            //else if (shootAsteroidsDown)
+            //{
 
-                if (!asteroidMovement.spawner.shootAsteroidsDown)
-                {
-                    Destroy(other);
-                }
+            //    if (!asteroidMovement.spawner.shootAsteroidsDown)
+            //    {
+            //        Destroy(other);
+            //    }
 
-            }
-            else if (shootAsteroidsLeft)
-            {
+            //}
+            //else if (shootAsteroidsLeft)
+            //{
 
-                if (!asteroidMovement.spawner.shootAsteroidsLeft)
-                {
-                    Destroy(other);
-                }
+            //    if (!asteroidMovement.spawner.shootAsteroidsLeft)
+            //    {
+            //        Destroy(other);
+            //    }
 
-            }
-            else if (shootAsteroidsRight)
-            {
+            //}
+            //else if (shootAsteroidsRight)
+            //{
 
-                if (!asteroidMovement.spawner.shootAsteroidsRight)
-                {
-                    Destroy(other);
-                }
+            //    if (!asteroidMovement.spawner.shootAsteroidsRight)
+            //    {
+            //        Destroy(other);
+            //    }
 
-            }
+            //}
         }
     }
 }
