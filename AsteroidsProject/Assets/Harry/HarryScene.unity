@@ -195,6 +195,14 @@ PrefabInstance:
   m_Modification:
     m_TransformParent: {fileID: 0}
     m_Modifications:
+    - target: {fileID: 7786964287047309961, guid: af516b381ba00c54b84886020952e679, type: 3}
+      propertyPath: shootAsteroidsUp
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 7786964287047309961, guid: af516b381ba00c54b84886020952e679, type: 3}
+      propertyPath: shootAsteroidsRight
+      value: 1
+      objectReference: {fileID: 0}
     - target: {fileID: 7786964287047309972, guid: af516b381ba00c54b84886020952e679, type: 3}
       propertyPath: m_Icon
       value: 
@@ -596,6 +604,14 @@ PrefabInstance:
   m_Modification:
     m_TransformParent: {fileID: 0}
     m_Modifications:
+    - target: {fileID: 7786964287047309961, guid: af516b381ba00c54b84886020952e679, type: 3}
+      propertyPath: shootAsteroidsUp
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 7786964287047309961, guid: af516b381ba00c54b84886020952e679, type: 3}
+      propertyPath: shootAsteroidsDown
+      value: 1
+      objectReference: {fileID: 0}
     - target: {fileID: 7786964287047309972, guid: af516b381ba00c54b84886020952e679, type: 3}
       propertyPath: m_Icon
       value: 
@@ -661,6 +677,14 @@ PrefabInstance:
   m_Modification:
     m_TransformParent: {fileID: 0}
     m_Modifications:
+    - target: {fileID: 7786964287047309961, guid: af516b381ba00c54b84886020952e679, type: 3}
+      propertyPath: shootAsteroidsUp
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 7786964287047309961, guid: af516b381ba00c54b84886020952e679, type: 3}
+      propertyPath: shootAsteroidsLeft
+      value: 1
+      objectReference: {fileID: 0}
     - target: {fileID: 7786964287047309972, guid: af516b381ba00c54b84886020952e679, type: 3}
       propertyPath: m_Icon
       value: 
