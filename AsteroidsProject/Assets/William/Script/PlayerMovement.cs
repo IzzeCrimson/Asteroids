@@ -7,7 +7,11 @@ public class PlayerMovement : MonoBehaviour
 
     MyInputManager myInputManager;
     Stats stats;
+
     public Camera playerCamera;
+    public GameObject projectile;
+    public Transform castPoint;
+    Projectile projectileScript;
 
     //USED FOR MOVING
     float smoothInputSpeed;
@@ -24,18 +28,48 @@ public class PlayerMovement : MonoBehaviour
     float rayDistance;
     float rotationAngle;
 
+    //USED FOR COOLDOWN MANAGEMENT
+    float attackCooldown;
+    float attackCooldownCounter;
+    float attackScaledValue;
+    bool isAttackOnCooldown;
+
     private void Awake()
     {
 
+        attackCooldown = 2;
+
         stats = gameObject.GetComponent<Stats>();
+        projectileScript = projectile.GetComponent<Projectile>();
         myInputManager = new MyInputManager();
 
-
+        
 
     }
 
     private void Update()
     {
+
+        #region Cooldown management
+
+        if (isAttackOnCooldown)
+        {
+            attackCooldownCounter += Time.fixedDeltaTime * stats.attackSpeed;
+
+            if (attackCooldownCounter >= attackCooldown)
+            {
+                isAttackOnCooldown = false;
+            }
+        }
+        #endregion
+
+        if (!isAttackOnCooldown && myInputManager.PlayerController.Shoot.triggered)
+        {
+
+            InstantiateProjectile();
+
+        }
+
 
         MoveCharacterWithKeyboard();
         CaracterRotation();
@@ -68,6 +102,14 @@ public class PlayerMovement : MonoBehaviour
             transform.rotation = Quaternion.Euler(0, rotationAngle, 0);
 
         }
+    }
+
+    void InstantiateProjectile()
+    {
+
+        Instantiate(projectile, castPoint.transform.position, castPoint.rotation);
+        attackCooldownCounter = 0;
+        isAttackOnCooldown = true;
     }
 
     private void OnEnable()
