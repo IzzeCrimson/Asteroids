@@ -43,7 +43,7 @@ BoxCollider:
   m_IsTrigger: 0
   m_Enabled: 1
   serializedVersion: 2
-  m_Size: {x: 10, y: 1, z: 1}
+  m_Size: {x: 1, y: 1, z: 100}
   m_Center: {x: 0, y: 0, z: 0}
 --- !u!114 &7786964287047309961
 MonoBehaviour:
@@ -59,6 +59,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   boxCollider: {fileID: 7786964287047309975}
   asteroid: {fileID: 4924059843220793886, guid: fd94662d6572ddc40981d12aeeac9642, type: 3}
+  SpawnPositoin: {x: 0, y: 0, z: 0}
   shootAsteroidsUp: 1
   shootAsteroidsDown: 0
   shootAsteroidsLeft: 0

@@ -8,10 +8,10 @@ public class MoveAsteroid : MonoBehaviour
     Stats stats;
     public AsteroidSpawner spawner;
 
-    float minMoveSpeed = 1;
-    float maxMoveSpeed = 5;
-    float maxRigth = 2;
-    float maxLeft = 2;
+    [SerializeField] float minMoveSpeed = 1;
+    [SerializeField] float maxMoveSpeed = 5;
+    [SerializeField] float maxRigth = 2;
+    [SerializeField] float maxLeft = 2;
 
     void Start()
     {

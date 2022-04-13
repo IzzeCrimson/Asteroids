@@ -4,17 +4,22 @@ using UnityEngine;
 
 public class AsteroidSpawner : MonoBehaviour
 {
+
+    [Space]
     [SerializeField] BoxCollider boxCollider;
     [SerializeField] GameObject asteroid;
 
 
     GameObject movingObject;
-    public Vector3 SpawnPositoin;
-    float asteroidSpawnerCooldown = 5;
+    Vector3 SpawnPositoin;
+
+    [Space]
+    [SerializeField] float asteroidSpawnerCooldown = 5;
 
     bool canSpawnAsteroid;
     MoveAsteroid moveAsteroid;
 
+    [Space]
     public bool shootAsteroidsUp;
     public bool shootAsteroidsDown;
     public bool shootAsteroidsLeft;
@@ -36,8 +41,8 @@ public class AsteroidSpawner : MonoBehaviour
             if (shootAsteroidsUp)
             {
 
-                SpawnPositoin.x = Random.Range(-boxCollider.size.x / 2, boxCollider.size.x / 2);
-                SpawnPositoin.z = boxCollider.transform.position.z;
+                SpawnPositoin.z = boxCollider.transform.position.z + Random.Range(-boxCollider.size.z / 2, boxCollider.size.z / 2);
+                SpawnPositoin.x = boxCollider.transform.position.x;
 
                 movingObject = Instantiate(asteroid, SpawnPositoin, Quaternion.identity, boxCollider.transform);
                 moveAsteroid = movingObject.GetComponent<MoveAsteroid>();
@@ -49,8 +54,8 @@ public class AsteroidSpawner : MonoBehaviour
             else if (shootAsteroidsDown)
             {
 
-                SpawnPositoin.x = Random.Range(-boxCollider.size.x / 2, boxCollider.size.x / 2);
-                SpawnPositoin.z = boxCollider.transform.position.z;
+                SpawnPositoin.z = boxCollider.transform.position.z + Random.Range(-boxCollider.size.z / 2, boxCollider.size.z / 2);
+                SpawnPositoin.x = boxCollider.transform.position.x;
 
                 movingObject = Instantiate(asteroid, SpawnPositoin, Quaternion.identity, boxCollider.transform);
                 moveAsteroid = movingObject.GetComponent<MoveAsteroid>();
@@ -62,7 +67,7 @@ public class AsteroidSpawner : MonoBehaviour
             else if (shootAsteroidsLeft)
             {
 
-                SpawnPositoin.x = Random.Range(-boxCollider.size.z / 2, boxCollider.size.z / 2);
+                SpawnPositoin.x = boxCollider.transform.position.x + Random.Range(-boxCollider.size.z / 2, boxCollider.size.z / 2);
                 SpawnPositoin.z = boxCollider.transform.position.z;
 
                 movingObject = Instantiate(asteroid, SpawnPositoin, Quaternion.identity, boxCollider.transform);
@@ -75,7 +80,7 @@ public class AsteroidSpawner : MonoBehaviour
             else if (shootAsteroidsRight)
             {
 
-                SpawnPositoin.x = Random.Range(-boxCollider.size.z / 2, boxCollider.size.z / 2);
+                SpawnPositoin.x = boxCollider.transform.position.x + Random.Range(-boxCollider.size.z / 2, boxCollider.size.z / 2);
                 SpawnPositoin.z = boxCollider.transform.position.z;
 
                 movingObject = Instantiate(asteroid, SpawnPositoin, Quaternion.identity, boxCollider.transform);
