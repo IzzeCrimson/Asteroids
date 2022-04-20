@@ -102,51 +102,5 @@ public class AsteroidSpawner : MonoBehaviour
         canSpawnAsteroid = true;
     }
 
-    private void OnTriggerEnter(Collider other)
-    {
-        MoveAsteroid asteroidMovement;
-        if (other.tag == "Asteroid")
-        {
-            
-            asteroidMovement = other.GetComponent<MoveAsteroid>();
-            Debug.Log("ass");
-            Destroy(other);
-            //if (shootAsteroidsUp)
-            //{
-
-            //    if (!asteroidMovement.spawner.shootAsteroidsUp)
-            //    {
-            //        Destroy(other);
-            //    }
-
-            //}
-            //else if (shootAsteroidsDown)
-            //{
-
-            //    if (!asteroidMovement.spawner.shootAsteroidsDown)
-            //    {
-            //        Destroy(other);
-            //    }
-
-            //}
-            //else if (shootAsteroidsLeft)
-            //{
-
-            //    if (!asteroidMovement.spawner.shootAsteroidsLeft)
-            //    {
-            //        Destroy(other);
-            //    }
-
-            //}
-            //else if (shootAsteroidsRight)
-            //{
-
-            //    if (!asteroidMovement.spawner.shootAsteroidsRight)
-            //    {
-            //        Destroy(other);
-            //    }
-
-            //}
-        }
-    }
+   
 }

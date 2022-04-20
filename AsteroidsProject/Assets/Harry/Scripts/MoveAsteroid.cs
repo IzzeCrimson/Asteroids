@@ -13,6 +13,12 @@ public class MoveAsteroid : MonoBehaviour
     [SerializeField] float maxRigth = 2;
     [SerializeField] float maxLeft = 2;
 
+
+    [HideInInspector] public bool left;
+    [HideInInspector] public bool right;
+    [HideInInspector] public bool up;
+    [HideInInspector] public bool down;
+
     void Start()
     {
         stats = gameObject.GetComponent<Stats>();
@@ -36,6 +42,25 @@ public class MoveAsteroid : MonoBehaviour
                 movementDicrection = new Vector3(Random.Range(-maxRigth, maxLeft), 0, Random.Range(-maxMoveSpeed, -minMoveSpeed));
             }
 
+        }
+        else
+        {
+            if (up)
+            {
+                movementDicrection = new Vector3(Random.Range(minMoveSpeed, maxMoveSpeed), 0, Random.Range(-maxLeft, maxRigth));
+            }
+            else if (down)
+            {
+                movementDicrection = new Vector3(Random.Range(-maxMoveSpeed, -minMoveSpeed), 0, Random.Range(-maxRigth, maxLeft));
+            }
+            else if (left)
+            {
+                movementDicrection = new Vector3(Random.Range(-maxLeft, maxRigth), 0, Random.Range(minMoveSpeed, maxMoveSpeed));
+            }
+            else if (right)
+            {
+                movementDicrection = new Vector3(Random.Range(-maxRigth, maxLeft), 0, Random.Range(-maxMoveSpeed, -minMoveSpeed));
+            }
         }
     }
 
