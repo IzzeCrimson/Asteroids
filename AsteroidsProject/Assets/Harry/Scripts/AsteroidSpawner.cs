@@ -25,9 +25,18 @@ public class AsteroidSpawner : MonoBehaviour
     public bool shootAsteroidsLeft;
     public bool shootAsteroidsRight;
 
+    [Space]
+    public DifficultyIncrease difficulty;
+    int difficultyChangeCheck;
+    Stats asteroidStats;
+
     void Start()
     {
- 
+
+        difficultyChangeCheck = difficulty.difficultyScaling;
+        asteroidStats = asteroid.GetComponent<Stats>();
+        
+
         //Debug.Log(boxCollider.size);
         canSpawnAsteroid = true;
     }
@@ -35,6 +44,17 @@ public class AsteroidSpawner : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
+
+
+        if (difficulty.difficultyScaling > difficultyChangeCheck)
+        {
+
+            asteroidSpawnerCooldown = asteroidSpawnerCooldown - difficulty.difficultyScaling / 2;
+            asteroidStats.maxHealth = asteroidStats.maxHealth + 10;
+            difficultyChangeCheck = difficulty.difficultyScaling;
+
+        }
+
         if (canSpawnAsteroid)
         {
 

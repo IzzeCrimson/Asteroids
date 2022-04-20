@@ -533,6 +533,7 @@ MonoBehaviour:
   ownerOfSize: {fileID: 3330823281716344852}
   minSize: 1
   maxSize: 3
+  sizeHolder: 0
 --- !u!114 &615248018124253138
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -565,6 +566,10 @@ MonoBehaviour:
   maxMoveSpeed: 2
   maxRigth: 1
   maxLeft: 1
+  left: 0
+  right: 0
+  up: 0
+  down: 0
 --- !u!114 &6805954815787187206
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -577,7 +582,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 917b1eedcf9b5984a9247534ab4e0584, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  maxHealth: 50
+  maxHealth: 10
   currentHealth: 0
   movementSpeed: 2
   attackSpeed: 0
