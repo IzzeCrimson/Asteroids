@@ -8,10 +8,10 @@ public class DifficultyIncrease : MonoBehaviour
     public Text timer;
     public bool timerActive;
     [SerializeField] GameObject asteroid;
-    float timePassed;
+    public float timePassed;
 
     public int difficultyScaling = 1;
-    public int howManyMinutesToIncreaseScaling = 2;
+    public float howManyMinutesToIncreaseScaling = 2;
 
     public int asteroidHealthIncreasePerLevel = 10;
     int scalingTimeHolder;
@@ -23,7 +23,7 @@ public class DifficultyIncrease : MonoBehaviour
     void Start()
     {
 
-        scalingTimeHolder = howManyMinutesToIncreaseScaling;
+        scalingTimeHolder = (int)howManyMinutesToIncreaseScaling;
         asteroidStats = asteroid.GetComponent<Stats>();
 
         asteroidStats.maxHealth = asteroidStartHealth;
