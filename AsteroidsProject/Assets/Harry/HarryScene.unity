@@ -253,6 +253,10 @@ PrefabInstance:
     m_TransformParent: {fileID: 0}
     m_Modifications:
     - target: {fileID: 7786964287047309961, guid: af516b381ba00c54b84886020952e679, type: 3}
+      propertyPath: difficulty
+      value: 
+      objectReference: {fileID: 1472571513}
+    - target: {fileID: 7786964287047309961, guid: af516b381ba00c54b84886020952e679, type: 3}
       propertyPath: shootAsteroidsUp
       value: 0
       objectReference: {fileID: 0}
@@ -560,6 +564,17 @@ SphereCollider:
   serializedVersion: 2
   m_Radius: 10
   m_Center: {x: 0, y: 0, z: 0}
+--- !u!114 &1472571513 stripped
+MonoBehaviour:
+  m_CorrespondingSourceObject: {fileID: 7086113390976502974, guid: 198327496939b664e8d339dba8437c4f, type: 3}
+  m_PrefabInstance: {fileID: 7086113390450839509}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 25e5b1c5667c3914f944ea5cc9ae852f, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!1 &1584398888
 GameObject:
   m_ObjectHideFlags: 0
@@ -1148,6 +1163,10 @@ PrefabInstance:
     m_TransformParent: {fileID: 0}
     m_Modifications:
     - target: {fileID: 7786964287047309961, guid: af516b381ba00c54b84886020952e679, type: 3}
+      propertyPath: difficulty
+      value: 
+      objectReference: {fileID: 1472571513}
+    - target: {fileID: 7786964287047309961, guid: af516b381ba00c54b84886020952e679, type: 3}
       propertyPath: shootAsteroidsUp
       value: 0
       objectReference: {fileID: 0}
@@ -1220,6 +1239,10 @@ PrefabInstance:
   m_Modification:
     m_TransformParent: {fileID: 0}
     m_Modifications:
+    - target: {fileID: 7786964287047309961, guid: af516b381ba00c54b84886020952e679, type: 3}
+      propertyPath: difficulty
+      value: 
+      objectReference: {fileID: 1472571513}
     - target: {fileID: 7786964287047309961, guid: af516b381ba00c54b84886020952e679, type: 3}
       propertyPath: shootAsteroidsUp
       value: 0
@@ -1414,10 +1437,6 @@ PrefabInstance:
       propertyPath: timer
       value: 
       objectReference: {fileID: 1680554416}
-    - target: {fileID: 7086113390976502974, guid: 198327496939b664e8d339dba8437c4f, type: 3}
-      propertyPath: howManyMinutesToIncreaseScaling
-      value: 2
-      objectReference: {fileID: 0}
     - target: {fileID: 7086113390976502975, guid: 198327496939b664e8d339dba8437c4f, type: 3}
       propertyPath: m_Name
       value: ScriptHolder

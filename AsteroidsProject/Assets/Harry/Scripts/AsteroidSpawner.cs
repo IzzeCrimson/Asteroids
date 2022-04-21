@@ -14,7 +14,8 @@ public class AsteroidSpawner : MonoBehaviour
     Vector3 SpawnPositoin;
 
     [Space]
-    [SerializeField] float asteroidSpawnerCooldown = 5;
+    public float asteroidSpawnerCooldown = 5;
+    float trueAstroidCooldown;
 
     bool canSpawnAsteroid;
     MoveAsteroid moveAsteroid;
@@ -27,14 +28,14 @@ public class AsteroidSpawner : MonoBehaviour
 
     [Space]
     public DifficultyIncrease difficulty;
-    int difficultyChangeCheck;
-    Stats asteroidStats;
+    public int difficultyChangeCheck;
+    
 
     void Start()
     {
 
         difficultyChangeCheck = difficulty.difficultyScaling;
-        asteroidStats = asteroid.GetComponent<Stats>();
+        trueAstroidCooldown = asteroidSpawnerCooldown;
         
 
         //Debug.Log(boxCollider.size);
@@ -45,12 +46,11 @@ public class AsteroidSpawner : MonoBehaviour
     void Update()
     {
 
-
+        
         if (difficulty.difficultyScaling > difficultyChangeCheck)
         {
 
-            asteroidSpawnerCooldown = asteroidSpawnerCooldown - difficulty.difficultyScaling / 2;
-            asteroidStats.maxHealth = asteroidStats.maxHealth + 10;
+            asteroidSpawnerCooldown = trueAstroidCooldown - difficulty.difficultyScaling/2;
             difficultyChangeCheck = difficulty.difficultyScaling;
 
         }
