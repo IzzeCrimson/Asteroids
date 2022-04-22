@@ -8,11 +8,12 @@ public class RandomSize : MonoBehaviour
     public Transform ownerOfSize;
     public float minSize;
     public float maxSize;
+    
+    public float sizeHolder;
 
     // Start is called before the first frame update
     void Start()
     {
-        float sizeHolder;
         Vector3 size = transform.position;
 
 

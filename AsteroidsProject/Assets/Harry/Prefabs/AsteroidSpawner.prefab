@@ -65,6 +65,8 @@ MonoBehaviour:
   shootAsteroidsDown: 0
   shootAsteroidsLeft: 0
   shootAsteroidsRight: 0
+  difficulty: {fileID: 7086113390976502974, guid: 198327496939b664e8d339dba8437c4f, type: 3}
+  difficultyChangeCheck: 0
 --- !u!54 &280445544
 Rigidbody:
   m_ObjectHideFlags: 0

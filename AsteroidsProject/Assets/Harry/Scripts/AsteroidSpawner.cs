@@ -14,7 +14,8 @@ public class AsteroidSpawner : MonoBehaviour
     Vector3 SpawnPositoin;
 
     [Space]
-    [SerializeField] float asteroidSpawnerCooldown = 5;
+    public float asteroidSpawnerCooldown = 5;
+    float trueAstroidCooldown;
 
     bool canSpawnAsteroid;
     MoveAsteroid moveAsteroid;
@@ -25,9 +26,18 @@ public class AsteroidSpawner : MonoBehaviour
     public bool shootAsteroidsLeft;
     public bool shootAsteroidsRight;
 
+    [Space]
+    public DifficultyIncrease difficulty;
+    public int difficultyChangeCheck;
+    
+
     void Start()
     {
- 
+
+        difficultyChangeCheck = difficulty.difficultyScaling;
+        trueAstroidCooldown = asteroidSpawnerCooldown;
+        
+
         //Debug.Log(boxCollider.size);
         canSpawnAsteroid = true;
     }
@@ -35,6 +45,16 @@ public class AsteroidSpawner : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
+
+        
+        if (difficulty.difficultyScaling > difficultyChangeCheck)
+        {
+
+            asteroidSpawnerCooldown = trueAstroidCooldown - difficulty.difficultyScaling/2;
+            difficultyChangeCheck = difficulty.difficultyScaling;
+
+        }
+
         if (canSpawnAsteroid)
         {
 
@@ -102,51 +122,5 @@ public class AsteroidSpawner : MonoBehaviour
         canSpawnAsteroid = true;
     }
 
-    private void OnTriggerEnter(Collider other)
-    {
-        MoveAsteroid asteroidMovement;
-        if (other.tag == "Asteroid")
-        {
-            
-            asteroidMovement = other.GetComponent<MoveAsteroid>();
-            Debug.Log("ass");
-            Destroy(other);
-            //if (shootAsteroidsUp)
-            //{
-
-            //    if (!asteroidMovement.spawner.shootAsteroidsUp)
-            //    {
-            //        Destroy(other);
-            //    }
-
-            //}
-            //else if (shootAsteroidsDown)
-            //{
-
-            //    if (!asteroidMovement.spawner.shootAsteroidsDown)
-            //    {
-            //        Destroy(other);
-            //    }
-
-            //}
-            //else if (shootAsteroidsLeft)
-            //{
-
-            //    if (!asteroidMovement.spawner.shootAsteroidsLeft)
-            //    {
-            //        Destroy(other);
-            //    }
-
-            //}
-            //else if (shootAsteroidsRight)
-            //{
-
-            //    if (!asteroidMovement.spawner.shootAsteroidsRight)
-            //    {
-            //        Destroy(other);
-            //    }
-
-            //}
-        }
-    }
+   
 }
