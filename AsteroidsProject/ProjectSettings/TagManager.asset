@@ -5,6 +5,9 @@ TagManager:
   serializedVersion: 2
   tags:
   - Asteroid
+  - Projectile
+  - SpecialAttack
+  - Item
   layers:
   - Default
   - TransparentFX

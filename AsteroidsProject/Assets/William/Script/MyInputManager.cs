@@ -46,13 +46,31 @@ public partial class @MyInputManager : IInputActionCollection2, IDisposable
                     ""initialStateCheck"": false
                 },
                 {
-                    ""name"": ""New action"",
+                    ""name"": ""SpecialAttack"",
+                    ""type"": ""Button"",
+                    ""id"": ""71808b2d-3f90-404b-a915-bf603d8594de"",
+                    ""expectedControlType"": ""Button"",
+                    ""processors"": """",
+                    ""interactions"": """",
+                    ""initialStateCheck"": false
+                },
+                {
+                    ""name"": ""MousePosition"",
                     ""type"": ""Value"",
                     ""id"": ""07f7867e-70fd-4fbe-b87b-b4241464d4e2"",
                     ""expectedControlType"": ""Vector2"",
                     ""processors"": """",
                     ""interactions"": """",
                     ""initialStateCheck"": true
+                },
+                {
+                    ""name"": ""OpenMenu"",
+                    ""type"": ""Button"",
+                    ""id"": ""ccc250e1-c592-4270-93d2-d04606aefbdd"",
+                    ""expectedControlType"": ""Button"",
+                    ""processors"": """",
+                    ""interactions"": """",
+                    ""initialStateCheck"": false
                 }
             ],
             ""bindings"": [
@@ -129,7 +147,29 @@ public partial class @MyInputManager : IInputActionCollection2, IDisposable
                     ""interactions"": """",
                     ""processors"": """",
                     ""groups"": """",
-                    ""action"": ""New action"",
+                    ""action"": ""MousePosition"",
+                    ""isComposite"": false,
+                    ""isPartOfComposite"": false
+                },
+                {
+                    ""name"": """",
+                    ""id"": ""683b5f3f-7f6a-4b26-bd9c-ccc5f9a090a5"",
+                    ""path"": ""<Keyboard>/escape"",
+                    ""interactions"": """",
+                    ""processors"": """",
+                    ""groups"": """",
+                    ""action"": ""OpenMenu"",
+                    ""isComposite"": false,
+                    ""isPartOfComposite"": false
+                },
+                {
+                    ""name"": """",
+                    ""id"": ""92fa32ae-a482-4ffb-836f-dbe87aa93ebf"",
+                    ""path"": ""<Keyboard>/f"",
+                    ""interactions"": """",
+                    ""processors"": """",
+                    ""groups"": """",
+                    ""action"": ""SpecialAttack"",
                     ""isComposite"": false,
                     ""isPartOfComposite"": false
                 }
@@ -142,7 +182,9 @@ public partial class @MyInputManager : IInputActionCollection2, IDisposable
         m_PlayerController = asset.FindActionMap("PlayerController", throwIfNotFound: true);
         m_PlayerController_Move = m_PlayerController.FindAction("Move", throwIfNotFound: true);
         m_PlayerController_Shoot = m_PlayerController.FindAction("Shoot", throwIfNotFound: true);
-        m_PlayerController_Newaction = m_PlayerController.FindAction("New action", throwIfNotFound: true);
+        m_PlayerController_SpecialAttack = m_PlayerController.FindAction("SpecialAttack", throwIfNotFound: true);
+        m_PlayerController_MousePosition = m_PlayerController.FindAction("MousePosition", throwIfNotFound: true);
+        m_PlayerController_OpenMenu = m_PlayerController.FindAction("OpenMenu", throwIfNotFound: true);
     }
 
     public void Dispose()
@@ -204,14 +246,18 @@ public partial class @MyInputManager : IInputActionCollection2, IDisposable
     private IPlayerControllerActions m_PlayerControllerActionsCallbackInterface;
     private readonly InputAction m_PlayerController_Move;
     private readonly InputAction m_PlayerController_Shoot;
-    private readonly InputAction m_PlayerController_Newaction;
+    private readonly InputAction m_PlayerController_SpecialAttack;
+    private readonly InputAction m_PlayerController_MousePosition;
+    private readonly InputAction m_PlayerController_OpenMenu;
     public struct PlayerControllerActions
     {
         private @MyInputManager m_Wrapper;
         public PlayerControllerActions(@MyInputManager wrapper) { m_Wrapper = wrapper; }
         public InputAction @Move => m_Wrapper.m_PlayerController_Move;
         public InputAction @Shoot => m_Wrapper.m_PlayerController_Shoot;
-        public InputAction @Newaction => m_Wrapper.m_PlayerController_Newaction;
+        public InputAction @SpecialAttack => m_Wrapper.m_PlayerController_SpecialAttack;
+        public InputAction @MousePosition => m_Wrapper.m_PlayerController_MousePosition;
+        public InputAction @OpenMenu => m_Wrapper.m_PlayerController_OpenMenu;
         public InputActionMap Get() { return m_Wrapper.m_PlayerController; }
         public void Enable() { Get().Enable(); }
         public void Disable() { Get().Disable(); }
@@ -227,9 +273,15 @@ public partial class @MyInputManager : IInputActionCollection2, IDisposable
                 @Shoot.started -= m_Wrapper.m_PlayerControllerActionsCallbackInterface.OnShoot;
                 @Shoot.performed -= m_Wrapper.m_PlayerControllerActionsCallbackInterface.OnShoot;
                 @Shoot.canceled -= m_Wrapper.m_PlayerControllerActionsCallbackInterface.OnShoot;
-                @Newaction.started -= m_Wrapper.m_PlayerControllerActionsCallbackInterface.OnNewaction;
-                @Newaction.performed -= m_Wrapper.m_PlayerControllerActionsCallbackInterface.OnNewaction;
-                @Newaction.canceled -= m_Wrapper.m_PlayerControllerActionsCallbackInterface.OnNewaction;
+                @SpecialAttack.started -= m_Wrapper.m_PlayerControllerActionsCallbackInterface.OnSpecialAttack;
+                @SpecialAttack.performed -= m_Wrapper.m_PlayerControllerActionsCallbackInterface.OnSpecialAttack;
+                @SpecialAttack.canceled -= m_Wrapper.m_PlayerControllerActionsCallbackInterface.OnSpecialAttack;
+                @MousePosition.started -= m_Wrapper.m_PlayerControllerActionsCallbackInterface.OnMousePosition;
+                @MousePosition.performed -= m_Wrapper.m_PlayerControllerActionsCallbackInterface.OnMousePosition;
+                @MousePosition.canceled -= m_Wrapper.m_PlayerControllerActionsCallbackInterface.OnMousePosition;
+                @OpenMenu.started -= m_Wrapper.m_PlayerControllerActionsCallbackInterface.OnOpenMenu;
+                @OpenMenu.performed -= m_Wrapper.m_PlayerControllerActionsCallbackInterface.OnOpenMenu;
+                @OpenMenu.canceled -= m_Wrapper.m_PlayerControllerActionsCallbackInterface.OnOpenMenu;
             }
             m_Wrapper.m_PlayerControllerActionsCallbackInterface = instance;
             if (instance != null)
@@ -240,9 +292,15 @@ public partial class @MyInputManager : IInputActionCollection2, IDisposable
                 @Shoot.started += instance.OnShoot;
                 @Shoot.performed += instance.OnShoot;
                 @Shoot.canceled += instance.OnShoot;
-                @Newaction.started += instance.OnNewaction;
-                @Newaction.performed += instance.OnNewaction;
-                @Newaction.canceled += instance.OnNewaction;
+                @SpecialAttack.started += instance.OnSpecialAttack;
+                @SpecialAttack.performed += instance.OnSpecialAttack;
+                @SpecialAttack.canceled += instance.OnSpecialAttack;
+                @MousePosition.started += instance.OnMousePosition;
+                @MousePosition.performed += instance.OnMousePosition;
+                @MousePosition.canceled += instance.OnMousePosition;
+                @OpenMenu.started += instance.OnOpenMenu;
+                @OpenMenu.performed += instance.OnOpenMenu;
+                @OpenMenu.canceled += instance.OnOpenMenu;
             }
         }
     }
@@ -251,6 +309,8 @@ public partial class @MyInputManager : IInputActionCollection2, IDisposable
     {
         void OnMove(InputAction.CallbackContext context);
         void OnShoot(InputAction.CallbackContext context);
-        void OnNewaction(InputAction.CallbackContext context);
+        void OnSpecialAttack(InputAction.CallbackContext context);
+        void OnMousePosition(InputAction.CallbackContext context);
+        void OnOpenMenu(InputAction.CallbackContext context);
     }
 }

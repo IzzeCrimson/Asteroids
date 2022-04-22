@@ -1,6 +1,7 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.SceneManagement;
 
 public class Health : MonoBehaviour
 {
@@ -10,23 +11,31 @@ public class Health : MonoBehaviour
 
         health = health - damageRecived;
 
-        DeathCheck(target, health);
+        //DeathCheck(target, health);
 
         return health;
 
 
     }
 
-    public void DeathCheck(GameObject objectToDestroy, float health)
+    public bool DeathCheck(GameObject objectToDestroy, float health)
     {
 
         if (health <= 0)
         {
+            if (objectToDestroy.CompareTag("Player"))
+            {
+                SceneManager.LoadScene("MenuScene", LoadSceneMode.Single);
+            }
+            else
+            {
+                Destroy(objectToDestroy);
+                return true;
 
-            Destroy(objectToDestroy);
-
+            }
         }
 
+        return false;
 
     }
 
