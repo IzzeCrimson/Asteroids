@@ -24,6 +24,10 @@ public class EnemyBehavior : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
+
+        rotation = Quaternion.LookRotation(player.transform.position - enemy.transform.position);
+        enemy.transform.rotation = Quaternion.Slerp(enemy.transform.rotation, rotation, Time.deltaTime * enemyStats.rotationSpeed);
+
         if (!withinAttackRange)
         {
 
@@ -33,8 +37,8 @@ public class EnemyBehavior : MonoBehaviour
         else
         {
             //rotate to player and shoot
-            rotation = Quaternion.LookRotation(player.transform.position - enemy.transform.position);
-            enemy.transform.rotation = Quaternion.Slerp(enemy.transform.rotation, rotation, Time.deltaTime * enemyStats.rotationSpeed);
+            
+            
 
             if (canAttack)
             {

@@ -55,7 +55,7 @@ public class AsteroidSpawner : MonoBehaviour
 
         }
 
-        if (canSpawnAsteroid)
+        if (canSpawnAsteroid && difficulty.timerActive)
         {
 
             if (shootAsteroidsUp)

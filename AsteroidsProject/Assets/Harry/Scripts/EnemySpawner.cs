@@ -5,8 +5,12 @@ using UnityEngine;
 public class EnemySpawner : MonoBehaviour
 {
 
-    static public int howManyEnemysCanSpawn;
+    static public int howManyEnemysCanSpawn = 4;
     static public int howManyEnemysHaveSpawned;
+
+    public int howManyEnemysCanbeSpawned;
+    public int howManyEnemyshaveBeenSpawned;
+
     public int enemyIncrease;
     public DifficultyIncrease difficulty;
     int difficultyChangeCheck;
@@ -14,45 +18,57 @@ public class EnemySpawner : MonoBehaviour
     [SerializeField] GameObject enemy;
     [SerializeField] GameObject spawner;
 
-    float[] enemySpawnArray;
+    static float[] enemySpawnArray;
     float lastTimeGoal;
     bool canSpawnEnemy = false;
 
+    int spawnOnceCheck;
+
     void Start()
     {
+
         difficultyChangeCheck = difficulty.difficultyScaling;
         enemySpawnArray = new float[howManyEnemysCanSpawn];
+        howManyEnemysCanbeSpawned = howManyEnemysCanSpawn;
+
         lastTimeGoal = 0;
+        spawnOnceCheck = 0;
 
     }
 
 
     void Update()
     {
-        if (howManyEnemysHaveSpawned >= howManyEnemysCanSpawn)
+        if (howManyEnemysCanSpawn > howManyEnemysHaveSpawned)
         {
 
-            if (canSpawnEnemy)
+            if (!canSpawnEnemy)
             {
 
                 for (int i = 0; i < enemySpawnArray.Length; i++)
                 {
-                    enemySpawnArray[i] = Random.Range(lastTimeGoal, difficulty.howManyMinutesToIncreaseScaling);
+                    enemySpawnArray[i] = Random.Range(lastTimeGoal, difficulty.howManyMinutesToIncreaseScaling * 60);
+                    
                 }
-
-                lastTimeGoal = difficulty.howManyMinutesToIncreaseScaling;
+                
+                lastTimeGoal = difficulty.howManyMinutesToIncreaseScaling * 60;
                 canSpawnEnemy = true;
             }
             else if (canSpawnEnemy)
             {
 
-                for (int i = 0; i < enemySpawnArray.Length; i++)
+                for (int i = spawnOnceCheck; i < enemySpawnArray.Length; i++)
                 {
 
-                    if (enemySpawnArray[i] >= difficulty.timePassed)
+                    if (enemySpawnArray[i] <= difficulty.timePassed)
                     {
+
                         Instantiate(enemy, spawner.transform.position, Quaternion.identity);
                         howManyEnemysHaveSpawned++;
+                        howManyEnemyshaveBeenSpawned = howManyEnemysHaveSpawned;
+
+                        spawnOnceCheck++;
+
                     }
 
                 }
@@ -65,7 +81,15 @@ public class EnemySpawner : MonoBehaviour
         {
 
             howManyEnemysCanSpawn = howManyEnemysCanSpawn + enemyIncrease;
+            howManyEnemysCanbeSpawned = howManyEnemysCanSpawn;
             enemySpawnArray = new float[howManyEnemysCanSpawn];
+
+            howManyEnemysHaveSpawned = 0;
+            spawnOnceCheck = 0;
+
+            howManyEnemyshaveBeenSpawned = howManyEnemysHaveSpawned;
+
+            canSpawnEnemy = false;
 
             difficultyChangeCheck = difficulty.difficultyScaling;
 
