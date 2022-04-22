@@ -46,9 +46,11 @@ public class Projectile : MonoBehaviour
             stats = collider.GetComponent<Stats>();
             health = collider.GetComponent<Health>();
 
-            
+            temp = projectileStats.currentHealth;
+
+
             projectileStats.currentHealth = health.ReciveDamage(this.gameObject, projectileStats.currentHealth, stats.currentHealth);
-            stats.currentHealth = health.ReciveDamage(collider.gameObject, stats.currentHealth, projectileStats.currentHealth);
+            stats.currentHealth = health.ReciveDamage(collider.gameObject, stats.currentHealth, temp);
 
             //if (collider.GetComponent<Healtbar>() != null)
             //{
