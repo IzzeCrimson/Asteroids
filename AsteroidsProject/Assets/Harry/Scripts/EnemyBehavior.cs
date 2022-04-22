@@ -35,6 +35,7 @@ public class EnemyBehavior : MonoBehaviour
             //rotate to player and shoot
             rotation = Quaternion.LookRotation(player.transform.position - enemy.transform.position);
             enemy.transform.rotation = Quaternion.Slerp(enemy.transform.rotation, rotation, Time.deltaTime * enemyStats.rotationSpeed);
+            
 
             if (canAttack)
             {
