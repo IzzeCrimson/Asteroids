@@ -16,7 +16,7 @@ GameObject:
   - component: {fileID: 944675356}
   m_Layer: 0
   m_Name: Enemy
-  m_TagString: Player
+  m_TagString: Asteroid
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -56,7 +56,7 @@ MonoBehaviour:
   movementSpeed: 0.5
   attackSpeed: 1
   size: 0
-  rotationSpeed: 0
+  rotationSpeed: 1
 --- !u!114 &7589260642999660548
 MonoBehaviour:
   m_ObjectHideFlags: 0
