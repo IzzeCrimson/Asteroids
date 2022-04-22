@@ -1,17 +1,24 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.SceneManagement;
+using UnityEngine.UI;
 
 public class PlayerMovement : MonoBehaviour
 {
 
     MyInputManager myInputManager;
     Stats stats;
+    CollisionScript collisionScript;
 
     public Camera playerCamera;
     public GameObject projectile;
+    public GameObject specialAttack;
     public Transform castPoint;
-    Projectile projectileScript;
+    public Text specialAttackText;
+
+    public int currency;
+    public int specialCharges;
 
     //USED FOR MOVING
     float smoothInputSpeed;
@@ -39,11 +46,12 @@ public class PlayerMovement : MonoBehaviour
 
         attackCooldown = 2;
 
+        collisionScript = GetComponent<CollisionScript>();
         stats = gameObject.GetComponent<Stats>();
-        projectileScript = projectile.GetComponent<Projectile>();
+    
         myInputManager = new MyInputManager();
 
-        
+        specialAttackText.text = specialCharges.ToString();
 
     }
 
@@ -66,10 +74,18 @@ public class PlayerMovement : MonoBehaviour
         if (!isAttackOnCooldown && myInputManager.PlayerController.Shoot.triggered)
         {
 
-            InstantiateProjectile();
-
+            InstantiateProjectile(projectile);
+            attackCooldownCounter = 0;
+            isAttackOnCooldown = true;
         }
 
+        if (specialCharges > 0 && myInputManager.PlayerController.SpecialAttack.triggered)
+        {
+
+            InstantiateProjectile(specialAttack);
+            specialCharges -= 1;
+            specialAttackText.text = specialCharges.ToString();
+        }
 
         MoveCharacterWithKeyboard();
         CaracterRotation();
@@ -104,13 +120,13 @@ public class PlayerMovement : MonoBehaviour
         }
     }
 
-    void InstantiateProjectile()
+    void InstantiateProjectile(GameObject attack)
     {
 
-        Instantiate(projectile, castPoint.transform.position, castPoint.rotation);
-        attackCooldownCounter = 0;
-        isAttackOnCooldown = true;
+        Instantiate(attack, castPoint.transform.position, castPoint.rotation);
+        
     }
+
 
     private void OnEnable()
     {

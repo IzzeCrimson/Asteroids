@@ -5,6 +5,8 @@ using UnityEngine;
 public class Stats : MonoBehaviour
 {
 
+    HealthBar healthBar;
+
     public float maxHealth;
     public float currentHealth;
     public float movementSpeed;
@@ -15,6 +17,16 @@ public class Stats : MonoBehaviour
     private void Awake()
     {
         currentHealth = maxHealth;
+
+        if (gameObject.GetComponent<HealthBar>() != null)
+        {
+
+            healthBar = gameObject.GetComponent<HealthBar>();
+            healthBar.HealthBarAwake(maxHealth);
+
+        }
+
+
     }
 
 }
