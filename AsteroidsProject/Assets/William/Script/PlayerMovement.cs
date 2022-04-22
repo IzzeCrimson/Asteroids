@@ -16,6 +16,7 @@ public class PlayerMovement : MonoBehaviour
     public GameObject specialAttack;
     public Transform castPoint;
     public Text specialAttackText;
+    public Text currencyText;
 
     public int currency;
     public int specialCharges;
@@ -26,6 +27,8 @@ public class PlayerMovement : MonoBehaviour
     Vector2 input;
     Vector2 currentInput;
     Vector2 velocity;
+    Vector3 spaceBoundaries;
+    Vector3 shopBoundaries;
 
     //USED FOR ROTATION
     Ray ray;
@@ -43,7 +46,8 @@ public class PlayerMovement : MonoBehaviour
 
     private void Awake()
     {
-
+        spaceBoundaries = new Vector3(43, 0, 24);
+        shopBoundaries = new Vector3(23, 0, 13);
         attackCooldown = 2;
         smoothInputSpeed = 0.2f;
 
@@ -53,6 +57,7 @@ public class PlayerMovement : MonoBehaviour
         myInputManager = new MyInputManager();
 
         specialAttackText.text = specialCharges.ToString();
+        SetCoinText();
 
     }
 
@@ -102,6 +107,51 @@ public class PlayerMovement : MonoBehaviour
         playerPosition = new Vector3(currentInput.x, 0, currentInput.y);
         transform.position += playerPosition * stats.movementSpeed * Time.fixedDeltaTime;
 
+        if (!DoorScript.isPlayerInShop)
+        {
+
+            BoundaryCheck(spaceBoundaries);
+
+        }
+
+        if (DoorScript.isPlayerInShop)
+        {
+            BoundaryCheck(shopBoundaries);
+        }
+
+    }
+
+    void BoundaryCheck(Vector3 boundaryLimit)
+    {
+
+        if (transform.position.x >= boundaryLimit.x)
+        {
+
+            transform.position = new Vector3(boundaryLimit.x, transform.position.y, transform.position.z);
+
+        }
+
+        if (transform.position.x <= boundaryLimit.x * -1)
+        {
+
+            transform.position = new Vector3(boundaryLimit.x * -1, transform.position.y, transform.position.z);
+
+        }
+
+        if (transform.position.z >= boundaryLimit.z)
+        {
+
+            transform.position = new Vector3(transform.position.x, transform.position.y, boundaryLimit.z);
+
+        }
+
+        if (transform.position.z <= boundaryLimit.z * -1)
+        {
+
+            transform.position = new Vector3(transform.position.x, transform.position.y, boundaryLimit.z * -1);
+
+        }
+
     }
 
     void CaracterRotation()
@@ -128,6 +178,12 @@ public class PlayerMovement : MonoBehaviour
         
     }
 
+    public void SetCoinText()
+    {
+
+        currencyText.text = currency.ToString();
+
+    }
 
     private void OnEnable()
     {

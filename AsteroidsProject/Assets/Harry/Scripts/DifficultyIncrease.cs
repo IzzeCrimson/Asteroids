@@ -10,8 +10,11 @@ public class DifficultyIncrease : MonoBehaviour
     [SerializeField] GameObject asteroid;
     public float timePassed;
 
+    [SerializeField] public static bool isGamePaused;
+    float roundedValue;
+
     public int difficultyScaling = 1;
-    public float howManyMinutesToIncreaseScaling = 2;
+    public float howManyMinutesToIncreaseScaling = 1;
 
     public int asteroidHealthIncreasePerLevel = 10;
     int scalingTimeHolder;
@@ -19,6 +22,11 @@ public class DifficultyIncrease : MonoBehaviour
     public int asteroidStartHealth = 50;
 
     Stats asteroidStats;
+
+    private void Awake()
+    {
+        isGamePaused = false;
+    }
 
     void Start()
     {
@@ -34,13 +42,14 @@ public class DifficultyIncrease : MonoBehaviour
     void Update()
     {
 
-        if (timerActive)
+        if (!isGamePaused)
         {
 
             timePassed += Time.deltaTime;
 
             string minutes = ((int)timePassed / 60).ToString();
-            string seconds = (timePassed - 60 * ((int)timePassed / 60)).ToString();
+            roundedValue = Mathf.Round((timePassed - 60 * ((int)timePassed / 60)) * 10.0f) * 0.1f;
+            string seconds = roundedValue.ToString();
 
             timer.text = minutes + ":" + seconds;
 
@@ -50,6 +59,8 @@ public class DifficultyIncrease : MonoBehaviour
                 difficultyScaling = difficultyScaling + 1;
                 howManyMinutesToIncreaseScaling = howManyMinutesToIncreaseScaling + scalingTimeHolder;
                 asteroidStats.maxHealth = asteroidStats.maxHealth + asteroidHealthIncreasePerLevel;
+
+                isGamePaused = true;
                 
             }
         }

@@ -46,7 +46,8 @@ MonoBehaviour:
   timer: {fileID: 0}
   timerActive: 1
   asteroid: {fileID: 4924059843220793886, guid: fd94662d6572ddc40981d12aeeac9642, type: 3}
-  asteroidSpawner: {fileID: 7786964287047309961, guid: af516b381ba00c54b84886020952e679, type: 3}
+  timePassed: 0
   difficultyScaling: 1
-  howManyMinutesToIncreaseScaling: 2
+  howManyMinutesToIncreaseScaling: 1
   asteroidHealthIncreasePerLevel: 10
+  asteroidStartHealth: 50

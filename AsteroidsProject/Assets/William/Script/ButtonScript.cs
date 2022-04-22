@@ -12,7 +12,7 @@ public class ButtonScript : MonoBehaviour
     public void OnPressPlay()
     {
 
-        SceneManager.LoadScene("WilliamScene", LoadSceneMode.Single);
+        SceneManager.LoadScene("MainScene", LoadSceneMode.Single);
 
     }
 

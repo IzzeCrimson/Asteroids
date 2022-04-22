@@ -91,6 +91,7 @@ public class ItemScript : MonoBehaviour
                 }
 
                 playerMovement.currency -= itemCost;
+                playerMovement.SetCoinText();
 
                 Destroy(gameObject);
 

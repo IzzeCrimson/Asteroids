@@ -8,15 +8,27 @@ public class DoorScript : MonoBehaviour
     [SerializeField] GameObject player;
     [SerializeField] Camera playerCamera;
     [SerializeField] GameObject platform;
+    [SerializeField] Transform teleportLocation;
+    [SerializeField] Transform cameraLocation;
     public static bool isPlayerInShop;
     float teleportDistance;
     Vector3 newPlayerPosition;
-    Vector3 newCameraPsoition;
+    Vector3 shopCamera;
+    Vector3 oldCameraPosition;
 
     private void Awake()
     {
         isPlayerInShop = false;
         teleportDistance = 150;
+        //shopCamera = new Vector3(151, 24, 0);
+        //oldCameraPosition = new Vector3(0, 43, 0);
+
+        //gameObject.SetActive(DifficultyIncrease.isGamePaused);
+    }
+
+    private void Update()
+    {
+        gameObject.SetActive(DifficultyIncrease.isGamePaused);
     }
 
     private void OnTriggerEnter(Collider other)
@@ -25,8 +37,8 @@ public class DoorScript : MonoBehaviour
         if (other.CompareTag("Player"))
         {
 
-            newPlayerPosition = player.transform.position;
-            newCameraPsoition = playerCamera.transform.position;
+            //newPlayerPosition = player.transform.position;
+            //shopCamera = playerCamera.transform.position;
 
             #region ???
 
@@ -42,29 +54,30 @@ public class DoorScript : MonoBehaviour
             #endregion
             if (!isPlayerInShop)
             {
-
-                newPlayerPosition.x += teleportDistance;
-                newPlayerPosition.z += platform.transform.lossyScale.z - 2.5f;
-                player.transform.position = newPlayerPosition;
-
-                newCameraPsoition.x += teleportDistance;
-                playerCamera.transform.position = newCameraPsoition;
-
                 isPlayerInShop = true;
+
+                //newPlayerPosition.x += teleportDistance;
+                //newPlayerPosition.z += platform.transform.lossyScale.z - 2.5f;
+                //player.transform.position = newPlayerPosition;
+                player.transform.position = teleportLocation.position;
+
+                playerCamera.transform.position = cameraLocation.position;
+
 
             }
             else
             {
-
-            
-                newPlayerPosition.x -= teleportDistance;
-                newPlayerPosition.z -= platform.transform.lossyScale.z - 2.5f;
-                player.transform.position = newPlayerPosition;
-
-                newCameraPsoition.x -= teleportDistance;
-                playerCamera.transform.position = newCameraPsoition;
-
                 isPlayerInShop = false;
+
+                //newPlayerPosition.x -= teleportDistance;
+                //newPlayerPosition.z -= platform.transform.lossyScale.z - 2.5f;
+                //player.transform.position = newPlayerPosition;
+                player.transform.position = teleportLocation.position;
+
+                playerCamera.transform.position = cameraLocation.position;
+
+                DifficultyIncrease.isGamePaused = false;
+
             }
 
             

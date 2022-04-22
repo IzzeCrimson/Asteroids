@@ -30,6 +30,8 @@ public class AstreoidCollision : MonoBehaviour
         if (other.CompareTag("Projectile") || other.CompareTag("Player"))
         {
 
+            //Debug.Log("Yo");
+
             if (other.GetComponent<Stats>() != null)
             {
 
