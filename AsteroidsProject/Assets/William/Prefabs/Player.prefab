@@ -71,9 +71,9 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 917b1eedcf9b5984a9247534ab4e0584, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  maxHealth: 50
+  maxHealth: 70
   currentHealth: 0
-  movementSpeed: 1
+  movementSpeed: 1.5
   attackSpeed: 1
   size: 0
   rotationSpeed: 0
@@ -308,7 +308,7 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0, y: 0}
   m_AnchorMax: {x: 1, y: 1}
-  m_AnchoredPosition: {x: -217.73999, y: -470}
+  m_AnchoredPosition: {x: 380.5, y: -470}
   m_SizeDelta: {x: -1857.45, y: -1030}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!222 &5772657481134402904

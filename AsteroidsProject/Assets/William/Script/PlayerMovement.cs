@@ -45,6 +45,7 @@ public class PlayerMovement : MonoBehaviour
     {
 
         attackCooldown = 2;
+        smoothInputSpeed = 0.2f;
 
         collisionScript = GetComponent<CollisionScript>();
         stats = gameObject.GetComponent<Stats>();
