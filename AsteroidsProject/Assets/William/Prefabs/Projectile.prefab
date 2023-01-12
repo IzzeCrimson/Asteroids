@@ -157,7 +157,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   maxHealth: 10
   currentHealth: 0
-  movementSpeed: 2
+  movementSpeed: 6
   attackSpeed: 0
   size: 0
   rotationSpeed: 0

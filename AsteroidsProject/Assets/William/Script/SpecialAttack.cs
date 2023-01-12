@@ -11,7 +11,7 @@ public class SpecialAttack : MonoBehaviour
     private void Awake()
     {
 
-        expandValue = new Vector3(8, 0, 8);
+        expandValue = new Vector3(20, 0, 20);
         maximumSize = 100;
     }
 

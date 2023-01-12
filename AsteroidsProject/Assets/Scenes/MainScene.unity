@@ -1334,6 +1334,10 @@ PrefabInstance:
       propertyPath: playerCamera
       value: 
       objectReference: {fileID: 875758273}
+    - target: {fileID: 1595195282260173937, guid: 41495e5a2a64bda498c56b55298bc545, type: 3}
+      propertyPath: m_AnchoredPosition.y
+      value: -469.99997
+      objectReference: {fileID: 0}
     - target: {fileID: 1840949701314616723, guid: 41495e5a2a64bda498c56b55298bc545, type: 3}
       propertyPath: m_AnchorMax.x
       value: 0
@@ -1360,7 +1364,11 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 5898620246067786725, guid: 41495e5a2a64bda498c56b55298bc545, type: 3}
       propertyPath: m_AnchoredPosition.x
-      value: -377.30005
+      value: -377.3
+      objectReference: {fileID: 0}
+    - target: {fileID: 5898620246067786725, guid: 41495e5a2a64bda498c56b55298bc545, type: 3}
+      propertyPath: m_AnchoredPosition.y
+      value: -469.99997
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 41495e5a2a64bda498c56b55298bc545, type: 3}
