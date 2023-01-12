@@ -564,8 +564,8 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   spawner: {fileID: 0}
-  minMoveSpeed: 0.1
-  maxMoveSpeed: 2
+  minMoveSpeed: 5
+  maxMoveSpeed: 15
   maxRigth: 1
   maxLeft: 1
   left: 0

@@ -21,7 +21,7 @@ public class InGameMenu : MonoBehaviour
     void Update()
     {
 
-        if (currentScene.name == "WilliamScene" && myInputManager.PlayerController.OpenMenu.triggered)
+        if (currentScene.name == "MainScene" && myInputManager.PlayerController.OpenMenu.triggered)
         {
             isMenuActive = !isMenuActive;
             //inGameMenu.SetActive(isMenuActive);
